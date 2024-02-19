@@ -1,0 +1,11 @@
+entity Task {
+    name String
+    categoryId String
+}
+
+entity Category {
+    name String
+    slug String
+}
+
+service * with serviceClass
