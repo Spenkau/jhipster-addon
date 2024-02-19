@@ -1,0 +1,21 @@
+{
+  "annotations": {
+    "changelogDate": "20240219081133"
+  },
+  "applications": "*",
+  "entityTableName": "task",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "categoryId",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Task",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

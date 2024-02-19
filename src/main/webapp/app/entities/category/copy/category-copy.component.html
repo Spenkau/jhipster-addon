@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (category) {
+      <div>
+        <h2 data-cy="categoryCopyHeading">
+          <span jhiTranslate="jhipsterAddonApp.category.copy.title">__jhiTransformTranslate__('jhipsterAddonApp.category.copy.title')</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-copy">
+          <dt><span jhiTranslate="global.field.id">__jhiTransformTranslate__('global.field.id')</span></dt>
+          <dd>
+            <span>{{ category.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterAddonApp.category.name">__jhiTransformTranslate__('jhipsterAddonApp.category.name')</span></dt>
+          <dd>
+            <span>{{ category.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="jhipsterAddonApp.category.slug">__jhiTransformTranslate__('jhipsterAddonApp.category.slug')</span></dt>
+          <dd>
+            <span>{{ category.slug }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"
+            >__jhiTransformTranslate__('entity.action.back')</span
+          >
+        </button>
+      </div>
+    }
+  </div>
+</div>
