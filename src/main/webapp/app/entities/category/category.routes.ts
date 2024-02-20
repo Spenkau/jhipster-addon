@@ -4,6 +4,7 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
 import { ASC } from 'app/config/navigation.constants';
 import { CategoryComponent } from './list/category.component';
 import { CategoryDetailComponent } from './detail/category-detail.component';
+import { CategoryCopyComponent } from './copy/category-copy.component';
 import { CategoryUpdateComponent } from './update/category-update.component';
 import CategoryResolve from './route/category-routing-resolve.service';
 
@@ -19,6 +20,14 @@ const categoryRoute: Routes = [
   {
     path: ':id/view',
     component: CategoryDetailComponent,
+    resolve: {
+      category: CategoryResolve,
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: ':id/copy',
+    component: CategoryCopyComponent,
     resolve: {
       category: CategoryResolve,
     },

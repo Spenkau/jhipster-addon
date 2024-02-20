@@ -12,6 +12,10 @@ import { SortService } from 'app/shared/sort/sort.service';
 import { ITask } from '../task.model';
 import { EntityArrayResponseType, TaskService } from '../service/task.service';
 import { TaskDeleteDialogComponent } from '../delete/task-delete-dialog.component';
+import { Store } from '@ngrx/store';
+import { loadTasks } from '../../../state/task/task.actions';
+import { State } from '../../../state/app.reducer';
+import { selectTasks } from '../../../state/task/task.selectors';
 
 @Component({
   standalone: true,
@@ -41,12 +45,29 @@ export class TaskComponent implements OnInit {
     public router: Router,
     protected sortService: SortService,
     protected modalService: NgbModal,
+    private store$: Store<State>,
   ) {}
 
   trackId = (_index: number, item: ITask): number => this.taskService.getTaskIdentifier(item);
 
   ngOnInit(): void {
     this.load();
+
+    const queryObject: any = {
+      sort: this.getSortQueryParam(this.predicate, this.ascending),
+    };
+
+    this.store$.dispatch(loadTasks({ payload: queryObject }));
+
+    this.store$.select(selectTasks).subscribe((tasks: ITask[]) => {
+      console.log(tasks);
+    });
+  }
+
+  copy(task: ITask): void {
+    this.taskService.copy(task).subscribe((res: any) => {
+      alert('using getName() return next result: ' + res.body.response);
+    });
   }
 
   delete(task: ITask): void {

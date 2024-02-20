@@ -1,11 +1,13 @@
 <div>
   <h2 id="page-heading" data-cy="CategoryHeading">
-    <span jhiTranslate="jhipsterAddonApp.category.home.title">Categories</span>
+    <span jhiTranslate="jhipsterAddonApp.category.home.title">__jhiTransformTranslate__('jhipsterAddonApp.category.home.title')</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="jhipsterAddonApp.category.home.refreshListLabel">Обновить список</span>
+        <span jhiTranslate="jhipsterAddonApp.category.home.refreshListLabel"
+          >__jhiTransformTranslate__('jhipsterAddonApp.category.home.refreshListLabel')</span
+        >
       </button>
 
       <button
@@ -15,7 +17,9 @@
         [routerLink]="['/category/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="jhipsterAddonApp.category.home.createLabel">Создать новый Category</span>
+        <span jhiTranslate="jhipsterAddonApp.category.home.createLabel"
+          >__jhiTransformTranslate__('jhipsterAddonApp.category.home.createLabel')</span
+        >
       </button>
     </div>
   </h2>
@@ -26,7 +30,9 @@
 
   @if (categories?.length === 0) {
     <div class="alert alert-warning" id="no-result">
-      <span jhiTranslate="jhipsterAddonApp.category.home.notFound">Categories не найдено</span>
+      <span jhiTranslate="jhipsterAddonApp.category.home.notFound"
+        >__jhiTransformTranslate__('jhipsterAddonApp.category.home.notFound')</span
+      >
     </div>
   }
 
@@ -35,56 +41,71 @@
       <table class="table table-striped" aria-describedby="page-heading">
         <thead>
           <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" style="width: 433px"></th>
             <th scope="col" jhiSortBy="id">
               <div class="d-flex">
-                <span jhiTranslate="global.field.id">ID</span>
+                <span jhiTranslate="global.field.id">__jhiTransformTranslate__('global.field.id')</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
             <th scope="col" jhiSortBy="name">
               <div class="d-flex">
-                <span jhiTranslate="jhipsterAddonApp.category.name">Name</span>
+                <span jhiTranslate="jhipsterAddonApp.category.name">__jhiTransformTranslate__('jhipsterAddonApp.category.name')</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
             <th scope="col" jhiSortBy="slug">
               <div class="d-flex">
-                <span jhiTranslate="jhipsterAddonApp.category.slug">Slug</span>
+                <span jhiTranslate="jhipsterAddonApp.category.slug">__jhiTransformTranslate__('jhipsterAddonApp.category.slug')</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           @for (category of categories; track trackId) {
             <tr data-cy="entityTable">
-              <td>
-                <a [routerLink]="['/category', category.id, 'view']">{{ category.id }}</a>
-              </td>
-              <td>{{ category.name }}</td>
-              <td>{{ category.slug }}</td>
               <td class="text-end">
                 <div class="btn-group">
+                  <a [routerLink]="['/category', category.id, 'copy']" class="btn btn-primary btn-sm" data-cy="entityCopyButton">
+                    <span class="d-none d-md-inline">COPY_1</span>
+                  </a>
+                  <button type="submit" (click)="copy(category)" class="btn btn-primary btn-sm" data-cy="entityCopyButton">
+                    <span class="d-none d-md-inline">COPY_2</span>
+                  </button>
                   <a [routerLink]="['/category', category.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                     <fa-icon icon="eye"></fa-icon>
-                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Просмотр</span>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view"
+                      >__jhiTransformTranslate__('entity.action.view')</span
+                    >
                   </a>
 
                   <a [routerLink]="['/category', category.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
                     <fa-icon icon="pencil-alt"></fa-icon>
-                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Изменить</span>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit"
+                      >__jhiTransformTranslate__('entity.action.edit')</span
+                    >
                   </a>
 
                   <button type="submit" (click)="delete(category)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                     <fa-icon icon="times"></fa-icon>
-                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Удалить</span>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete"
+                      >__jhiTransformTranslate__('entity.action.delete')</span
+                    >
                   </button>
                 </div>
               </td>
+
+              <td>
+                <a [routerLink]="['/category', category.id, 'view']">{{ category.id }}</a>
+              </td>
+
+              <td>{{ category.name }}</td>
+
+              <td>{{ category.slug }}</td>
             </tr>
           }
         </tbody>

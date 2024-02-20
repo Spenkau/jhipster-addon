@@ -21,6 +21,10 @@ export class CategoryService {
     protected applicationConfigService: ApplicationConfigService,
   ) {}
 
+  copy(category: ICategory): Observable<EntityResponseType> {
+    return this.http.post<ICategory>(`${this.resourceUrl}/copy`, category, { observe: 'response' });
+  }
+
   create(category: NewCategory): Observable<EntityResponseType> {
     return this.http.post<ICategory>(this.resourceUrl, category, { observe: 'response' });
   }
