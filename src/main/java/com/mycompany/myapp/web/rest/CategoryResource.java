@@ -154,6 +154,12 @@ public class CategoryResource {
         return ResponseUtil.wrapOrNotFound(category);
     }
 
+    @PostMapping("/copy")
+    public String copy(@RequestBody Category category) {
+        log.debug("REST request to get name of copy of category");
+        return "{ \"response\": " + "\"" + categoryService.copy(category) + "\"}";
+    }
+
     /**
      * {@code DELETE  /categories/:id} : delete the "id" category.
      *

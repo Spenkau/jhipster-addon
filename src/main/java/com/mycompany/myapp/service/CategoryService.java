@@ -36,6 +36,24 @@ public class CategoryService {
     }
 
     /**
+     * Copy a category.
+     *
+     * @param category the entity to copy.
+     * @return the name of entity.
+     */
+    public String copy(Category category) {
+        log.debug("Request to copy Category : {}", category);
+
+        Long id = category.getId();
+
+        Optional<Category> result = categoryRepository.findById(id);
+
+        return result.map(Category::getName).orElse(null);
+        // OR:
+        //        return category.getName();
+    }
+
+    /**
      * Update a category.
      *
      * @param category the entity to save.
